@@ -1,16 +1,21 @@
 let gonAttack = "";
 let pitouAttack = "";
 
+console.log("Help Gon Defeat Pitou")
 
-//Player Choice
-gonAttack = validatePlayerInput(prompt("Type the attack you want to perform ('rock', 'Paper', 'Scissors')"));
-//NPC choice
-pitouAttack = getPitouAttack();
-//Results
+document.getElementById('play-round').addEventListener("click", function() {
+    //Player Choice
+    gonAttack = validatePlayerInput(prompt("Type the attack you want to perform ('rock', 'Paper', 'Scissors')"));
+    //NPC choice
+    pitouAttack = getPitouAttack();
 
-console.log("Gon Plays: " + gonAttack);
-console.log("Pitou Plays: " + pitouAttack);
-console.log(playRound(gonAttack, pitouAttack));
+    //Results
+    console.log("Gon Plays: " + gonAttack);
+    console.log("Pitou Plays: " + pitouAttack);
+    console.log(playRound(gonAttack, pitouAttack));
+
+});
+
 
 
 function getPitouAttack(){
@@ -65,6 +70,8 @@ function validatePlayerInput(input){
 
     return "Error"
 }
+
+
 
 
 
