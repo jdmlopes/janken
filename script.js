@@ -3,29 +3,36 @@ let pitouAttack = "";
 let gonHealth = 3;
 let pitouHealth = 3;
 
-console.log("Help Gon Defeat Pitou");
-console.log("Gon Health: " + gonHealth);
-console.log("Pitou Health: " + pitouHealth);
 
 
-//
-document.getElementById('play-round').addEventListener("click", () => {
-    //Player Choice
-    gonAttack = validatePlayerInput(prompt("Type the attack you want to perform ('rock', 'Paper', 'Scissors')"));
-    //NPC choice
-    pitouAttack = getPitouAttack();
 
-    //Results
-    console.log("Gon Plays: " + gonAttack);
-    console.log("Pitou Plays: " + pitouAttack);
-    console.log(playRound(gonAttack, pitouAttack));
+document.getElementById('play').addEventListener("click", () => {
+    //Cleans the console
+    console.clear();
+
+    console.log("Help Gon Defeat Pitou");
     console.log("Gon Health: " + gonHealth);
     console.log("Pitou Health: " + pitouHealth);
+    //Game Loop
+    let gameOver = false;
+    while(!gameOver){
+        //Player Choice
+        gonAttack = validatePlayerInput(prompt("Type the attack you want to perform ('rock', 'Paper', 'Scissors')"));
+        //NPC choice
+        pitouAttack = getPitouAttack();
 
-    checkWinner();
+        //Results
+        console.log("----------------------------------------------");
+        console.log("Gon Plays: " + gonAttack);
+        console.log("Pitou Plays: " + pitouAttack);
+        console.log(playRound(gonAttack, pitouAttack));
+        console.log("Gon Health: " + gonHealth);
+        console.log("Pitou Health: " + pitouHealth);
+        console.log("----------------------------------------------");
 
+        gameOver = checkWinner();
+    }
     
-
 });
 
 
@@ -33,12 +40,13 @@ function checkWinner(){
     if(pitouHealth  === 0){
         console.log("Gon won the fight, Neferpitou was defeated");
         resetGame();
-    }
-
-    if(gonHealth  === 0){
+        return true;
+    }else if(gonHealth  === 0){
         console.log("Neferpitou won the fight, Gon was defeated");
         resetGame();
+        return true;
     }
+    return false;
 }
 
 
