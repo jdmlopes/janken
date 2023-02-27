@@ -2,7 +2,10 @@ body{
     background-color: rgba(255, 182, 47, 0.822);
     font-family: 'Courier New', Courier, monospace;
     min-width: 900px;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -44,4 +47,21 @@ body{
     height: auto;
 }
 
+/* CONTENT */
+#content{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+}
+
 /* FOOTER */
+
+#footer{
+    display: flex;
+    justify-content: center;
+    background-color: green;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
