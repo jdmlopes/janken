@@ -1,0 +1,47 @@
+body{
+    background-color: rgba(255, 182, 47, 0.822);
+    font-family: 'Courier New', Courier, monospace;
+    min-width: 900px;
+    height: 100vh;
+}
+
+/* HEADER */
+
+#header{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 12px 30px;
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+
+}
+
+.text-border{
+    text-shadow: 2px 0 red, -2px 0 red, 0 2px red, 0 -2px red,
+    1px 1px red, -1px -1px red, 1px -1px red, -1px 1px red;
+}
+
+.x{
+    color: green;
+    text-shadow: 2px 0 goldenrod, -2px 0 goldenrod, 0 2px goldenrod, 0 -2px goldenrod,
+    1px 1px goldenrod, -1px -1px goldenrod, 1px -1px goldenrod, -1px 1px goldenrod;
+}
+
+.h1-color-2{
+    color: rgb(255, 145, 0);
+
+}
+
+.h1-color-1{
+    color: white;
+    
+}
+
+
+#logo{
+    width: 350px;
+    height: auto;
+}
+
+/* FOOTER */
