@@ -59,7 +59,7 @@ body{
 
 /* START NEW GAME SCREEN */
 
-.game-screen{
+.screen{
     display: flex;
     flex-direction: column;
 }
@@ -93,6 +93,30 @@ body{
 
 }
 
+/* GAME SCREEN */
+
+#score{
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    width: 95vw;
+    height: 40px;
+    gap: 5px;
+
+}
+
+#score img{
+    flex: 0 0 75px;
+    width: auto;
+}
+
+.health-bar{
+    flex: 4;
+    background-color: lightgray;
+    border: 3px solid red;
+}
+
+
 /* FOOTER */
 
 #footer{
@@ -103,3 +127,4 @@ body{
     margin: 0px;
     padding: 0px;
 }
+

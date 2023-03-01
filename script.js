@@ -2,18 +2,25 @@ let gonAttack = "";
 let pitouAttack = "";
 let gonHealth = 3;
 let pitouHealth = 3;
+const gameScreen = document.querySelector('#game-screen');
+const startScreen = document.querySelector('#start-screen');
 
 
 
+
+
+/* ----- GAME LOOP ----- */
 
 document.getElementById('play').addEventListener("click", () => {
-    //Cleans the console
-    console.clear();
+    
+    hideScreen(startScreen);
+    showScreen(gameScreen);
+    /* console.clear();
 
     console.log("Help Gon Defeat Pitou");
     console.log("Gon Health: " + gonHealth);
     console.log("Pitou Health: " + pitouHealth);
-    //Game Loop
+
     let gameOver = false;
     while(!gameOver){
         //Player Choice
@@ -31,9 +38,12 @@ document.getElementById('play').addEventListener("click", () => {
         console.log("----------------------------------------------");
 
         gameOver = checkWinner();
-    }
+    } */
     
 });
+
+
+/* ----- GAME FUNCTIONS ----- */
 
 
 function checkWinner(){
@@ -115,6 +125,17 @@ function validatePlayerInput(input){
     return "Error"
 }
 
+
+/*  SCREEN FUNCTIONS*/
+
+function hideScreen(screen){
+    screen.style.display = 'none';
+    
+}
+
+function showScreen(screen){
+    screen.style.display = 'flex';
+}
 
 
 

@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Gon Jan Ken</title>
+        <title>JAJANKEN</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
     </head>
@@ -18,10 +18,30 @@
         </div>
 
         <div id="content">
-            <div id="start-screen" class="game-screen">
+
+            <div id="start-screen" class="screen">
                 <img src="./images/gon_vs_pitou.webp" alt="">
                 <p>Help Gon choose the right attacks to defeat Neferpitou</p>
                 <button id="play"> START FIGHT</button>
+            </div>
+
+            <div id="game-screen" hidden>
+                <div id="score">
+                    <div class="health-bar">
+                        
+
+                    </div>
+                    <img src="/images/infinity.png" alt="">
+                    <div class="health-bar">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="gameover-screen" hidden>
+
             </div>
             
         </div>
