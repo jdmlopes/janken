@@ -4,6 +4,7 @@ let gonHealth = 3;
 let pitouHealth = 3;
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
+const roundResults = document.querySelector('#round-results');
 const attacks = document.querySelectorAll('.attack');
 
 
@@ -20,7 +21,8 @@ document.getElementById('play').addEventListener('click', (e) => {
 
 attacks.forEach((attack) =>{
     attack.addEventListener('click',(e) => {
-        console.log(playRound(e.target.id,getPitouAttack()));
+
+        updateGameLog(playRound(e.target.id,getPitouAttack()));
         checkWinner();
     });
 });
@@ -49,6 +51,7 @@ function resetGame(){
     pitouHealth = 3;
     drawHealthBar(document.getElementById('player-health'),gonHealth);
     drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+    clearGameLog();
 
 }
 
@@ -74,38 +77,38 @@ function playRound(playerAttack, opponentAttack){
         if(opponentAttack === "scissors"){
             pitouHealth--;
             drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
-            return "Gon Wins";
+            return "Rock beats Scissors, Gon Wins";
         }
 
         if(opponentAttack === "paper"){
             gonHealth--;
             drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Pitou Wins";
+            return "Paper beats Rock, Pitou Wins";
         }
 
     }else if(playerAttack === "paper"){
         if(opponentAttack === "rock"){
             pitouHealth--;
             drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
-            return "Gon Wins";
+            return "Paper beats Rock, Gon Wins";
         }
         
         if(opponentAttack === "scissors"){
             gonHealth--;
             drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Pitou Wins";
+            return "Scissors beat Paper, Pitou Wins";
         }
     }else if(playerAttack === "scissors"){
         if(opponentAttack === "paper"){
             pitouHealth--;
             drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
-            return "Gon Wins";
+            return "Scissors beat Paper, Gon Wins";
         }
         
         if(opponentAttack === "rock"){
             gonHealth--;
             drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Pitou Wins";
+            return "Rock beats Scissors, Pitou Wins";
         }
     }
     return "Error";
@@ -152,6 +155,19 @@ function drawHealthBarReverse(healthBar,health,totalHealth = 3){
     }  
 }
 
+function updateGameLog(resultText){
+    let p = document.createElement('p');
+    p.classList.add('round-text');
+    p.textContent = resultText;
+    roundResults.prepend(p);
+
+}
+
+function clearGameLog(){
+    while(roundResults.firstChild){
+        roundResults.removeChild(roundResults.firstChild);
+    }
+}
 
 
 
