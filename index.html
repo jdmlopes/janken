@@ -21,26 +21,26 @@
 
             <div id="start-screen" class="screen">
                 <img src="./images/gon_vs_pitou.webp" alt="">
-                <p>Help Gon choose the right attacks to defeat Neferpitou</p>
+                <p>Help Gon choose the right attacks to defeat his opponent</p>
                 <button id="play"> START FIGHT</button>
             </div>
 
-            <div id="game-screen" hidden>
+            <div id="game-screen" class="screen" style="display: none;">
                 <div id="score">
-                    <div class="health-bar">
-                        
-
-                    </div>
+                    <canvas id="player-health" class="health-bar"></canvas>
                     <img src="/images/infinity.png" alt="">
-                    <div class="health-bar">
+                    <canvas id="opponent-health" class="health-bar" dir="rtl"></canvas>
+                </div>
 
-                    </div>
-
+                <div id="attacks">
+                    <button id="rock" class="attack" value="rock">ROCK</button>
+                    <button id="paper" class="attack" value="paper">PAPER</button>
+                    <button id="scissors" class="attack" value="scissors">SCISSORS</button>
                 </div>
 
             </div>
 
-            <div id="gameover-screen" hidden>
+            <div id="gameover-screen" class="screen" style="display: none;">
 
             </div>
             

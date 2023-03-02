@@ -4,43 +4,28 @@ let gonHealth = 3;
 let pitouHealth = 3;
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
+const attacks = document.querySelectorAll('.attack');
 
 
 
 
+/* ----- GAME EVENTS ----- */
 
-/* ----- GAME LOOP ----- */
-
-document.getElementById('play').addEventListener("click", () => {
+document.getElementById('play').addEventListener('click', (e) => {
     
     hideScreen(startScreen);
     showScreen(gameScreen);
-    /* console.clear();
-
-    console.log("Help Gon Defeat Pitou");
-    console.log("Gon Health: " + gonHealth);
-    console.log("Pitou Health: " + pitouHealth);
-
-    let gameOver = false;
-    while(!gameOver){
-        //Player Choice
-        gonAttack = validatePlayerInput(prompt("Type the attack you want to perform ('rock', 'Paper', 'Scissors')"));
-        //NPC choice
-        pitouAttack = getPitouAttack();
-
-        //Results
-        console.log("----------------------------------------------");
-        console.log("Gon Plays: " + gonAttack);
-        console.log("Pitou Plays: " + pitouAttack);
-        console.log(playRound(gonAttack, pitouAttack));
-        console.log("Gon Health: " + gonHealth);
-        console.log("Pitou Health: " + pitouHealth);
-        console.log("----------------------------------------------");
-
-        gameOver = checkWinner();
-    } */
-    
+    resetGame();
 });
+
+attacks.forEach((attack) =>{
+    attack.addEventListener('click',(e) => {
+        console.log(playRound(e.target.value,getPitouAttack()));
+        checkWinner();
+    });
+});
+
+
 
 
 /* ----- GAME FUNCTIONS ----- */
@@ -50,20 +35,23 @@ function checkWinner(){
     if(pitouHealth  === 0){
         console.log("Gon won the fight, Neferpitou was defeated");
         resetGame();
-        return true;
+        return;
     }else if(gonHealth  === 0){
         console.log("Neferpitou won the fight, Gon was defeated");
         resetGame();
-        return true;
+        return;
     }
-    return false;
 }
 
 
 function resetGame(){
     gonHealth = 3;
     pitouHealth = 3;
+    drawHealthBar(document.getElementById('player-health'),gonHealth);
+    drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+
 }
+
 
 function getPitouAttack(){
     let randomAttack = Math.floor(Math.random() * 3) + 1;
@@ -78,52 +66,51 @@ function getPitouAttack(){
 }
 
 //Calculate the result of the round, decreases the health of the looser by 1 and returns a string with the result
-function playRound(player, npc){
-    if(player === npc){
+function playRound(playerAttack, opponentAttack){
+    if(playerAttack === opponentAttack){
         return  "Tie";
-    }else if(player === "rock"){
+    }else if(playerAttack === "rock"){
 
-        if(npc === "scissors"){
+        if(opponentAttack === "scissors"){
             pitouHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
             return "Gon Wins";
         }
 
-        if(npc === "paper"){
+        if(opponentAttack === "paper"){
             gonHealth--;
+            drawHealthBar(document.getElementById('player-health'),gonHealth);
             return "Pitou Wins";
         }
 
-    }else if(player === "paper"){
-        if(npc === "rock"){
+    }else if(playerAttack === "paper"){
+        if(opponentAttack === "rock"){
             pitouHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
             return "Gon Wins";
         }
         
-        if(npc === "scissors"){
+        if(opponentAttack === "scissors"){
             gonHealth--;
+            drawHealthBar(document.getElementById('player-health'),gonHealth);
             return "Pitou Wins";
         }
-    }else if(player === "scissors"){
-        if(npc === "paper"){
+    }else if(playerAttack === "scissors"){
+        if(opponentAttack === "paper"){
             pitouHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
             return "Gon Wins";
         }
         
-        if(npc === "rock"){
+        if(opponentAttack === "rock"){
             gonHealth--;
+            drawHealthBar(document.getElementById('player-health'),gonHealth);
             return "Pitou Wins";
         }
     }
     return "Error";
 }
 
-function validatePlayerInput(input){
-    if(typeof input === 'string'){
-        return input.trim().toLowerCase();
-    }
-
-    return "Error"
-}
 
 
 /*  SCREEN FUNCTIONS*/
@@ -136,6 +123,36 @@ function hideScreen(screen){
 function showScreen(screen){
     screen.style.display = 'flex';
 }
+
+function drawHealthBar(healthBar,health,totalHealth = 3){
+    let pencil = healthBar.getContext('2d');
+    let barWidth = pencil.canvas.width / totalHealth;
+    let barHeight = pencil.canvas.height;
+    pencil.clearRect(0,0,pencil.canvas.width,pencil.canvas.height);
+    for(i = 0; i < health; i++){
+        pencil.beginPath();
+        pencil.rect(i*barWidth,0,barWidth-1,barHeight);
+        pencil.fillStyle = 'green';
+        pencil.fill();
+        pencil.closePath();
+    }  
+}
+
+function drawHealthBarReverse(healthBar,health,totalHealth = 3){
+    let pencil = healthBar.getContext('2d');
+    let barWidth = pencil.canvas.width / totalHealth;
+    let barHeight = pencil.canvas.height;
+    pencil.clearRect(0,0,pencil.canvas.width,pencil.canvas.height);
+    for(i = 1; i <= health; i++){
+        pencil.beginPath();
+        pencil.rect(pencil.canvas.width - (i*barWidth),0,barWidth-1,barHeight);
+        pencil.fillStyle = 'green';
+        pencil.fill();
+        pencil.closePath();
+    }  
+}
+
+
 
 
 

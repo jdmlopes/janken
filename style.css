@@ -100,20 +100,22 @@ body{
     align-self: flex-start;
     justify-content: center;
     width: 95vw;
-    height: 40px;
+    height: 4vh;
     gap: 5px;
 
 }
 
 #score img{
-    flex: 0 0 75px;
-    width: auto;
+    flex: 0 0 auto;
+    max-width: 75px;
+    max-height: auto;
 }
 
 .health-bar{
-    flex: 4;
+    flex: 1;
     background-color: lightgray;
     border: 3px solid red;
+    padding: 2px;
 }
 
 
