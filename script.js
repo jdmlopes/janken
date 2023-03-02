@@ -20,7 +20,7 @@ document.getElementById('play').addEventListener('click', (e) => {
 
 attacks.forEach((attack) =>{
     attack.addEventListener('click',(e) => {
-        console.log(playRound(e.target.value,getPitouAttack()));
+        console.log(playRound(e.target.id,getPitouAttack()));
         checkWinner();
     });
 });
