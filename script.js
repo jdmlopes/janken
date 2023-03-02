@@ -4,7 +4,7 @@ let gonHealth = 3;
 let pitouHealth = 3;
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
-const roundResults = document.querySelector('#round-results');
+const gameLog = document.querySelector('#game-log');
 const attacks = document.querySelectorAll('.attack');
 
 
@@ -159,13 +159,13 @@ function updateGameLog(resultText){
     let p = document.createElement('p');
     p.classList.add('round-text');
     p.textContent = resultText;
-    roundResults.prepend(p);
+    gameLog.prepend(p);
 
 }
 
 function clearGameLog(){
-    while(roundResults.firstChild){
-        roundResults.removeChild(roundResults.firstChild);
+    while(gameLog.firstChild){
+        gameLog.removeChild(gameLog.firstChild);
     }
 }
 
