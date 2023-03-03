@@ -2,6 +2,7 @@ let playerAttack = "";
 let npcAttack = "";
 let playerHealth = 5;
 let npcHealth = 5;
+
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
 const gameLog = document.querySelector('#game-log');
@@ -185,7 +186,6 @@ function showWinner(winner){
     }
 
 }
-
 
 
 
