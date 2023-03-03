@@ -1,7 +1,7 @@
-let gonAttack = "";
-let pitouAttack = "";
-let gonHealth = 3;
-let pitouHealth = 3;
+let playerAttack = "";
+let npcAttack = "";
+let playerHealth = 3;
+let npcHealth = 3;
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
 const gameLog = document.querySelector('#game-log');
@@ -22,7 +22,7 @@ document.getElementById('play').addEventListener('click', (e) => {
 attacks.forEach((attack) =>{
     attack.addEventListener('click',(e) => {
 
-        updateGameLog(playRound(e.target.id,getPitouAttack()));
+        updateGameLog(playRound(e.target.id,getNpcAttack()));
         checkWinner();
     });
 });
@@ -34,12 +34,12 @@ attacks.forEach((attack) =>{
 
 
 function checkWinner(){
-    if(pitouHealth  === 0){
-        console.log("Gon won the fight, Neferpitou was defeated");
+    if(npcHealth  === 0){
+        console.log("Gon won the fight, Opponent was defeated");
         resetGame();
         return;
-    }else if(gonHealth  === 0){
-        console.log("Neferpitou won the fight, Gon was defeated");
+    }else if(playerHealth  === 0){
+        console.log("Opponent won the fight, Gon was defeated");
         resetGame();
         return;
     }
@@ -47,16 +47,16 @@ function checkWinner(){
 
 
 function resetGame(){
-    gonHealth = 3;
-    pitouHealth = 3;
-    drawHealthBar(document.getElementById('player-health'),gonHealth);
-    drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+    playerHealth = 3;
+    npcHealth = 3;
+    drawHealthBar(document.getElementById('player-health'),playerHealth);
+    drawHealthBarReverse(document.getElementById('opponent-health'),npcHealth);
     clearGameLog();
 
 }
 
 
-function getPitouAttack(){
+function getNpcAttack(){
     let randomAttack = Math.floor(Math.random() * 3) + 1;
     if(randomAttack === 1){
         return "rock"
@@ -75,40 +75,40 @@ function playRound(playerAttack, opponentAttack){
     }else if(playerAttack === "rock"){
 
         if(opponentAttack === "scissors"){
-            pitouHealth--;
-            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+            npcHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),npcHealth);
             return "Rock beats Scissors, Gon Wins";
         }
 
         if(opponentAttack === "paper"){
-            gonHealth--;
-            drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Paper beats Rock, Pitou Wins";
+            playerHealth--;
+            drawHealthBar(document.getElementById('player-health'),playerHealth);
+            return "Paper beats Rock, Opponent Wins";
         }
 
     }else if(playerAttack === "paper"){
         if(opponentAttack === "rock"){
-            pitouHealth--;
-            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+            npcHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),npcHealth);
             return "Paper beats Rock, Gon Wins";
         }
         
         if(opponentAttack === "scissors"){
-            gonHealth--;
-            drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Scissors beat Paper, Pitou Wins";
+            playerHealth--;
+            drawHealthBar(document.getElementById('player-health'),playerHealth);
+            return "Scissors beat Paper, Opponent Wins";
         }
     }else if(playerAttack === "scissors"){
         if(opponentAttack === "paper"){
-            pitouHealth--;
-            drawHealthBarReverse(document.getElementById('opponent-health'),pitouHealth);
+            npcHealth--;
+            drawHealthBarReverse(document.getElementById('opponent-health'),npcHealth);
             return "Scissors beat Paper, Gon Wins";
         }
         
         if(opponentAttack === "rock"){
-            gonHealth--;
-            drawHealthBar(document.getElementById('player-health'),gonHealth);
-            return "Rock beats Scissors, Pitou Wins";
+            playerHealth--;
+            drawHealthBar(document.getElementById('player-health'),playerHealth);
+            return "Rock beats Scissors, Opponent Wins";
         }
     }
     return "Error";
