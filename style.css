@@ -83,14 +83,18 @@ body{
 
 }
 
-#start-screen #play{
+.play{
     padding: 10px 25px;
     border: 3px solid rgb(196, 0, 0);
     background-color: orange;
     color: white;
     font-size: 25px;
     font-weight: bold;
+}
 
+.play:hover{
+    cursor: pointer;
+    background-color: rgb(182, 118, 0);
 }
 
 /* GAME SCREEN */
@@ -231,7 +235,7 @@ body{
 /* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
 }
 
 /* Track */
@@ -249,6 +253,19 @@ body{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(185, 121, 0); 
+}
+
+/* GAME OVER SCREEN */
+
+#game-over-screen{
+    align-items: center;
+}
+
+#winner-image{
+    width: 900px;
+    height: auto;
+    border: 3px solid red;
+    border-radius: 15px;
 }
 
 

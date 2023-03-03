@@ -1,23 +1,27 @@
 let playerAttack = "";
 let npcAttack = "";
-let playerHealth = 3;
-let npcHealth = 3;
+let playerHealth = 5;
+let npcHealth = 5;
 const gameScreen = document.querySelector('#game-screen');
 const startScreen = document.querySelector('#start-screen');
 const gameLog = document.querySelector('#game-log');
+const gameOverScreen = document.querySelector('#game-over-screen');
+const playButtons = document.querySelectorAll('.play');
 const attacks = document.querySelectorAll('.attack');
 
 
 
 
 /* ----- GAME EVENTS ----- */
-
-document.getElementById('play').addEventListener('click', (e) => {
-    
-    hideScreen(startScreen);
-    showScreen(gameScreen);
-    resetGame();
+playButtons.forEach((button) =>{
+    button.addEventListener('click', (e) => {
+        hideScreen(startScreen);
+        hideScreen(gameOverScreen);
+        showScreen(gameScreen);
+        resetGame();
+    });
 });
+
 
 attacks.forEach((attack) =>{
     attack.addEventListener('click',(e) => {
@@ -35,24 +39,21 @@ attacks.forEach((attack) =>{
 
 function checkWinner(){
     if(npcHealth  === 0){
-        console.log("Gon won the fight, Opponent was defeated");
-        resetGame();
+        showWinner('player')
         return;
     }else if(playerHealth  === 0){
-        console.log("Opponent won the fight, Gon was defeated");
-        resetGame();
+        showWinner('npc')
         return;
     }
 }
 
 
 function resetGame(){
-    playerHealth = 3;
-    npcHealth = 3;
+    playerHealth = 5;
+    npcHealth = 5;
     drawHealthBar(document.getElementById('player-health'),playerHealth);
     drawHealthBarReverse(document.getElementById('opponent-health'),npcHealth);
     clearGameLog();
-
 }
 
 
@@ -127,7 +128,7 @@ function showScreen(screen){
     screen.style.display = 'flex';
 }
 
-function drawHealthBar(healthBar,health,totalHealth = 3){
+function drawHealthBar(healthBar,health,totalHealth = 5){
     let pencil = healthBar.getContext('2d');
     let barWidth = pencil.canvas.width / totalHealth;
     let barHeight = pencil.canvas.height;
@@ -141,7 +142,7 @@ function drawHealthBar(healthBar,health,totalHealth = 3){
     }  
 }
 
-function drawHealthBarReverse(healthBar,health,totalHealth = 3){
+function drawHealthBarReverse(healthBar,health,totalHealth = 5){
     let pencil = healthBar.getContext('2d');
     let barWidth = pencil.canvas.width / totalHealth;
     let barHeight = pencil.canvas.height;
@@ -167,6 +168,22 @@ function clearGameLog(){
     while(gameLog.firstChild){
         gameLog.removeChild(gameLog.firstChild);
     }
+}
+
+function showWinner(winner){
+    hideScreen(gameScreen);
+    showScreen(gameOverScreen);
+    if(winner === 'player'){
+        document.getElementById('winner-title').textContent = "YOU WIN, CONGRATULATIONS!!!!";
+        document.getElementById('winner-image').src = "./images/gon_victory.jpg";
+        document.getElementById('winner-text').textContent = "You won the fight, you are a true master of nen.";
+    }else if(winner === 'npc'){
+        document.getElementById('winner-title').textContent = "YOU LOSE!";
+        document.getElementById('winner-image').src = "./images/pitou_victory.jpg";
+        document.getElementById('winner-text').textContent = "You lost the fight and died, but you can always ressurrect and try again.";
+
+    }
+
 }
 
 
